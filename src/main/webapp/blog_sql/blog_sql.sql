@@ -15,6 +15,7 @@ create table board(
 	board_like number,
 	board_comment varchar2(200),
 	board_date date,
+	board_image varchar2(20),
 	PRIMARY KEY(board_num)
 );
 
@@ -39,11 +40,14 @@ select * from suggest;
 alter table board add constraint pk_board_id foreign key(board_id)
 references member(member_id) ON DELETE CASCADE;
 
+alter table board drop constraint pk_board_id;
+
 alter table comment1 add constraint pk_comment1_num foreign key(comment1_num)
 references board(board_num) ON DELETE CASCADE;
 
 alter table comment1 add constraint pk_comment1_id foreign key(comment1_id)
 references member(member_id) ON DELETE CASCADE;
+
 
 drop table comment1 purge;
 drop table board purge;
